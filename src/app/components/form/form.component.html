@@ -1,0 +1,32 @@
+<h2>Create your list</h2>
+<form [formGroup]="formMessage" (ngSubmit)="submit()">
+
+  <div class="form-group">
+    <input
+    id="item"
+    type="text"
+    class="form-control"
+    placeholder="message"
+    formControlName="message">
+    <span *ngIf="formMessage.get('message')?.errors?.['required']">El campo mensaje es obligatorio</span>
+    <span *ngIf="formMessage.get('message')?.errors?.['minlength']">El campo mensaje debe de ser mínimo de 25 caracteres</span>
+  </div>
+
+  <div class="form-group">
+    <label for="">Type of Message</label>
+    <select class="form-control" formControlName="type">
+      <option value="">Choose one...</option>
+      <option value="0">Error</option>
+      <option value="1">Warning</option>
+      <option value="2">Info</option>
+      <option value="3">Success</option>
+    </select>
+    <span *ngIf="formMessage.get('type')?.errors?.['nullValidator']">El campo type no debe estar vació</span>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">submit</button>
+</form>
+
+
+<p>{{ formMessage.get('img')?.value }}</p>

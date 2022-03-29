@@ -7,9 +7,17 @@
     type="text"
     class="form-control"
     placeholder="message"
-    formControlName="message">
-    <span *ngIf="formMessage.get('message')?.errors?.['required']">El campo mensaje es obligatorio</span>
-    <span *ngIf="formMessage.get('message')?.errors?.['minlength']">El campo mensaje debe de ser mínimo de 25 caracteres</span>
+    formControlName="message"
+    [ngClass]="formMessage.get('message')?.errors?.['required'] || formMessage.get('message')?.errors?.['minlength'] ? 'is-invalid' : 'is-valid'">
+    <div class="invalid-feedback" *ngIf="formMessage.get('message')?.errors?.['required']">
+      El campo mensaje es obligatorio.
+    </div>
+    <div class="invalid-feedback" *ngIf="formMessage.get('message')?.errors?.['minlength']">
+      El campo mensaje debe de ser mínimo de 25 caracteres.
+    </div>
+    <div class="valid-feedback" *ngIf="!formMessage.get('message')?.errors?.['required'] && !formMessage.get('message')?.errors?.['minlength']">
+      Campo valido.
+    </div>
   </div>
 
   <div class="form-group">
@@ -21,12 +29,11 @@
       <option value="2">Info</option>
       <option value="3">Success</option>
     </select>
-    <span *ngIf="formMessage.get('type')?.errors?.['nullValidator']">El campo type no debe estar vació</span>
   </div>
 
 
-  <button type="submit" class="btn btn-primary">submit</button>
+  <button type="submit" [disabled]="formMessage.invalid" class="btn btn-primary">submit</button>
 </form>
 
 
-<p>{{ formMessage.get('message')?.value }}</p>
+<!-- <p>{{ formMessage.get('message')?.value }}</p> -->

@@ -13,9 +13,9 @@ export class FormComponent{
 
   formMessage: FormGroup = new FormGroup({
     message: new FormControl('', [Validators.required, Validators.minLength(25)]),
-    img: new FormControl('', [Validators.required, Validators.minLength(25)]),
-    type: new FormControl('', [Validators.nullValidator, Validators.pattern(/^-?(0|[1-9]\d*)?$/)]),
-    class: new FormControl('', [Validators.required, Validators.nullValidator])
+    img: new FormControl(''),
+    type: new FormControl(''),
+    class: new FormControl('')
   })
 
   constructor() { }

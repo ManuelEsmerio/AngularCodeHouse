@@ -6,14 +6,16 @@ import { Message } from '../../interfaces/message';
   templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.css']
 })
-export class ItemListComponent implements OnInit {
+export class ItemListComponent {
 
   @Input() props!: Message;
+  @Input() index!: number;
 
   constructor() {
   }
 
-  ngOnInit(): void {
+  handleDelete(index:number){
+    console.log("index", index)
   }
 
 }
